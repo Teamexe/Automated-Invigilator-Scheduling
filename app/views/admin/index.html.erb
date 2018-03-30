@@ -5,14 +5,30 @@
     <div class="teachers">
         <table class="table">
             <thead>
-                <th>Teacher Id</th>
-                <th>Teacher Name</th>
+                <th>Email</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Resend</th>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>Amit</td>
+            <%@teachers.each do |teacher| %>
+                <tr>
+                    <td><%=teacher.email %></td>
+                    <td><%=teacher.name %></td>
+                    <td><%=teacher.department %></td>
+                    <td><%=link_to('resend', teacher_confirmation_path(teacher: {:email => "#{teacher.email}"}), :method => :post,remote: true)%></td>
+                  
+                </tr>
+            <%end%>
             </tbody>
         </table>
+        <%=form_tag admin_add_teacher_path,{remote: true,method: :post,:class=>"add_exam"} do%>
+            <h3>Add Teacher</h3>
+            <%=text_field :teacher , :name,placeholder: "Name",required: true%>
+            <%=email_field :teacher , :email,placeholder: "Email",required: true%><br>
+            <%=text_field :teacher , :department,placeholder: "Department",required: true%>
+            <%=submit_tag :Add%>
+        <%end%>
        
     </div>
     <div class="exams">

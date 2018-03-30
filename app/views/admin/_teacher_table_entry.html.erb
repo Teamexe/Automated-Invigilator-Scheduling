@@ -1,0 +1,6 @@
+<tr>
+    <td><%=teacher.email %></td>
+    <td><%=teacher.name %></td>
+    <td><%=teacher.department %></td>
+    <td><%=link_to('resend', teacher_confirmation_path(teacher: {:email => "#{teacher.email}"}), :method => :post,remote: true)%></td>
+</tr>
