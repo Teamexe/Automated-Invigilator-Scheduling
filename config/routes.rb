@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'admin/index'
   post 'admin/automate'
+  post 'admin/add_exam'
   devise_for :teachers
   root 'main#index'
   get 'main/index'

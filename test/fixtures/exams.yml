@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course: MyText
+  class: MyText
+  room: MyText
+  time: 2018-03-30 17:11:55
+  date: 2018-03-30
+  course_id: MyText
+
+two:
+  course: MyText
+  class: MyText
+  room: MyText
+  time: 2018-03-30 17:11:55
+  date: 2018-03-30
+  course_id: MyText

@@ -53,6 +53,7 @@ nav ul li a:hover {
     <ul>
         <li><%=link_to 'Home',root_path%></li>
         <%if teacher_signed_in? %>
+        <li><%=link_to 'Dashboard',teachers_index_path,method: :get%></li>
         <li><%=link_to current_teacher.email+'[logout]',destroy_teacher_session_path,method: :delete%></li>
         <%else %>
         <li><%=link_to 'SignIn',teachers_index_path%></li>

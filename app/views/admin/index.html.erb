@@ -13,6 +13,7 @@
                 <td>Amit</td>
             </tbody>
         </table>
+       
     </div>
     <div class="exams">
     <table class="table">
@@ -22,30 +23,44 @@
                     <th>Course</th>
                     <th>Date</th>
                     <th>Timings</th>
+                    <th>Class</th>
+                    <th>Room</th>
                 </tr>
             </thead>
             <tbody>
+            <%@exams.each do|exam| %>
                 <tr>
-                    <td>1</td>
-                    <td>Physics</td>
-                    <td>11/12/18</td>
-                    <td>11:30</td>
+                    <td><%=exam.course_id%></td>
+                    <td><%=exam.course%></td>
+                    <td><%=exam.date%></td>
+                    <td><%=exam.time.to_formatted_s(:time)%></td>
+                    <td><%=exam.cls%></td>
+                    <td><%=exam.room%></td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Physics</td>
-                    <td>11/12/18</td>
-                    <td>11:30</td>
-                </tr>
+                <%end %>
             </tbody>
         </table>
-        <form>
-            <input type="date" name="time">
-            <input type="time" name="time">
-        </form>
+        <%=form_tag admin_add_exam_path,{remote: true,method: :post,:class=>"add_exam"} do%>
+            <h3>Add Exam</h3>
+            <%=text_field :exam , :course_id,placeholder: "Course Id",required: true%>
+            <%=text_field :exam , :course,placeholder: "Course",required: true%><br>
+            <%=date_field :exam , :date,required: true%>
+            <%=time_field :exam , :time,required: true%><br>
+            <%=text_field :exam , :cls,placeholder: "Class",required: true%>
+            <%=text_field :exam , :room,placeholder: "Room",required: true%><br>
+            <%=submit_tag :Add%>
+        <%end%>
     </div>
     </div>
     <%=button_to 'Automate Duties',admin_automate_path,remote: true,method: :post%>
     <div id="automated_duties">
     </div>
 </div>
+<script>
+
+    $('.add_exam input[type="submit"]').on('click',function (e) {
+        $('body').append('<%=escape_javascript(render 'loader')%>')
+        
+    })
+
+</script>
