@@ -1,0 +1,51 @@
+<%= render 'main/navbar' %>
+
+<div class="content">
+    <div class="tables">
+    <div class="teachers">
+        <table class="table">
+            <thead>
+                <th>Teacher Id</th>
+                <th>Teacher Name</th>
+            </thead>
+            <tbody>
+                <td>1</td>
+                <td>Amit</td>
+            </tbody>
+        </table>
+    </div>
+    <div class="exams">
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>Exam Id</th>
+                    <th>Course</th>
+                    <th>Date</th>
+                    <th>Timings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Physics</td>
+                    <td>11/12/18</td>
+                    <td>11:30</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Physics</td>
+                    <td>11/12/18</td>
+                    <td>11:30</td>
+                </tr>
+            </tbody>
+        </table>
+        <form>
+            <input type="date" name="time">
+            <input type="time" name="time">
+        </form>
+    </div>
+    </div>
+    <%=button_to 'Automate Duties',admin_automate_path,remote: true,method: :post%>
+    <div id="automated_duties">
+    </div>
+</div>

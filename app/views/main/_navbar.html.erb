@@ -1,0 +1,61 @@
+<style>
+nav {
+  background-color: #f3f3f3;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+/* line 10, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/main.scss */
+nav .Logo {
+  display: flex;
+  width: 175px;
+  align-items: center;
+  justify-content: space-between;
+  font-weight:600;
+}
+/* line 16, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/main.scss */
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* line 23, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/main.scss */
+nav ul li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+/* line 27, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/main.scss */
+nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  color: black;
+  text-decoration: none;
+  height: 100%;
+}
+/* line 35, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/main.scss */
+nav ul li a:hover {
+  /*background-color: #ccc;*/
+  border-bottom:5px solid grey;
+  color: grey;
+}
+</style>
+<nav>
+    <div class="Logo">
+        <%=image_tag 'LOGO(NIT).png',width:'50'%>
+        <label>NIT Hamirpur</label>
+    </div>
+    <ul>
+        <li><%=link_to 'Home',root_path%></li>
+        <%if teacher_signed_in? %>
+        <li><%=link_to current_teacher.email+'[logout]',destroy_teacher_session_path,method: :delete%></li>
+        <%else %>
+        <li><%=link_to 'SignIn',teachers_index_path%></li>
+        <%end  %>
+    </ul>
+</nav>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teachersduty</title>
+    <%= csrf_meta_tags %>
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+    <%# <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %> 
+    <%# <%= stylesheet_link_tag params[:controller] %>
+   <%=stylesheet_link_tag :application, (controller_name unless devise_controller?) unless (controller_name unless devise_controller?).nil?%>
+   <%=javascript_include_tag :application, (controller_name unless devise_controller?) unless (controller_name unless devise_controller?).nil?%>
+    <%# <%= stylesheet_link_tag 'application' %> 
+        <%# <%= javascript_include_tag params[:controller] %>  
+
+
+  </head>
+
+  <body>
+<script type="text/javascript" >
+  <%if notice %>
+    new Noty({
+        type: 'info',
+        layout: 'topRight',
+        theme: 'mint',
+        text: '<%= notice %>',
+        timeout: 5000,
+        progressBar: true,
+        closeWith: ['click', 'button'],
+        animation: {
+            open: 'noty_effects_open',
+            close: 'noty_effects_close'
+        },
+        id: false,
+        force: false,
+        killer: false,
+        queue: 'global',
+        container: false,
+        buttons: [],
+        sounds: {
+            sources: [],
+            volume: 1,
+            conditions: []
+        },
+        titleCount: {
+            conditions: []
+        },
+        modal: false
+    }).show()
+  <% end %>
+  <%if alert%>
+  new Noty({
+      type: 'error',
+      layout: 'topRight',
+      theme: 'mint',
+      text: '<%= alert %>',
+      timeout: 5000,
+      progressBar: true,
+      closeWith: ['click', 'button'],
+      animation: {
+          open: 'noty_effects_open',
+          close: 'noty_effects_close'
+      },
+      id: false,
+      force: false,
+      killer: false,
+      queue: 'global',
+      container: false,
+      buttons: [],
+      sounds: {
+          sources: [],
+          volume: 1,
+          conditions: []
+      },
+      titleCount: {
+          conditions: []
+      },
+      modal: false
+  }).show()
+<% end %>
+</script>
+    <%= yield %>
+  </body>
+</html>

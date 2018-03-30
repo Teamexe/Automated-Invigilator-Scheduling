@@ -1,0 +1,60 @@
+// Place all the styles related to the admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div.content{
+    margin-top: 20px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    div.tables{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        table{
+            border: 1px solid black;
+            text-align: center;
+            box-sizing: border-box;
+
+   border-collapse: collapse;
+            thead,tbody{
+                tr{
+                    border: 1px solid grey;
+                    td,th{
+                    box-sizing: border-box;
+                    padding: 10px;
+                    }
+                    td:nth-of-type(even){
+                        border-left: 1px solid black;
+                        border-right: 1px solid black;
+                    }       
+                }
+                tr:nth-of-type(even){
+                    background-color: rgb(240, 240, 240);
+                }
+            }
+                 
+        }
+
+    }   
+   .button_to input{
+       margin-top: 20px;
+        /*background-color: rgb(43, 117, 255);*/
+        background:linear-gradient(45deg,rgb(43, 117, 255) 75%,rgb(53, 127, 255));
+        outline: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 30px;
+        padding: 5px 8px;
+        box-shadow: 1px 1px 5px grey;
+        cursor: pointer;
+        box-sizing: border-box;
+        transition: 0.2s transform ease-in-out; 
+    }
+    .button_to input:hover{
+        transform: scale(1.1);
+    }
+
+    
+}
