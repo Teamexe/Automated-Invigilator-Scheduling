@@ -1,3 +1,61 @@
 // Place all the styles related to the teachers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+div.content{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    div.about_me{
+        text-align: justify;
+        border: 1px solid rgb(196, 196, 196);
+        padding: 20px;
+        label{
+            display: block;
+            margin: 2px;
+        }
+    }
+    table{
+            border: 1px solid black;
+            text-align: center;
+            box-sizing: border-box;
+
+   border-collapse: collapse;
+            thead,tbody{
+                tr{
+                    border: 1px solid grey;
+                    td,th{
+                    box-sizing: border-box;
+                    padding: 10px;
+                    }
+                    td:nth-of-type(even){
+                        border-left: 1px solid black;
+                        border-right: 1px solid black;
+                    }       
+                }
+                tr:nth-of-type(even){
+                    background-color: rgb(240, 240, 240);
+                }
+            }
+        }
+        form.change_pass{
+            display: flex;
+            flex-flow: column;
+            align-items: center;
+        }
+        a.change_password,input[type='submit']{
+            margin-top:10px; 
+            text-decoration: none;
+            padding: 10px 15px;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            border-radius: 5px;
+            background-color: rgb(255, 174, 0);
+            transition: transform 0.4s ease-in-out;
+            border: none;
+            cursor: pointer;
+        }
+        a.change_password:hover,input[type='submit']:hover{
+            transform: scale(1.2);
+        }
+}
