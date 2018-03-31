@@ -3,6 +3,7 @@
 <div class="content">
     <div class="tables">
     <div class="teachers">
+        <h4>Teachers</h4>
         <table class="table">
             <thead>
                 <th>Email</th>
@@ -14,9 +15,9 @@
             <%@teachers.each do |teacher| %>
                 <tr>
                     <td><%=teacher.email %></td>
-                    <td><%=teacher.name %></td>
+                    <td><%=teacher.name %><%if teacher.admin? %>[ADMIN]<%end %></td>
                     <td><%=teacher.department %></td>
-                    <td><%=link_to('resend', teacher_confirmation_path(teacher: {:email => "#{teacher.email}"}), :method => :post,remote: true)%></td>
+                    <td><%if ! teacher.confirmed?%><%=link_to('resend', teacher_confirmation_path(teacher: {:email => "#{teacher.email}"}), :method => :post,class: "resend",remote: true)%><%else%>Confirmed<%end%></td>
                   
                 </tr>
             <%end%>
@@ -32,6 +33,7 @@
        
     </div>
     <div class="exams">
+        <h4>Exams</h4>    
     <table class="table">
             <thead>
                 <tr>
@@ -70,13 +72,89 @@
     </div>
     <%=button_to 'Automate Duties',admin_automate_path,remote: true,method: :post%>
     <div id="automated_duties">
+
+<%if @duties.count !=0%>
+       <table class="table">
+            <thead>
+                <tr>
+                    <th>Teacher</th>
+                    <th>Exam</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Class</th>
+                    <th>Room</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%@duties.each do|duty| %>
+                <tr>
+                    <td><%=duty.teacher.name%></td>
+                    <td><%=duty.exam.course%></td>
+                    <td><%=duty.exam.date%></td>
+                    <td><%=duty.exam.time.to_formatted_s(:time)%></td>
+                    <td><%=duty.exam.cls%></td>
+                    <td><%=duty.exam.room%></td>
+                </tr>
+                <%end %>
+            </tbody>
+            
+        </table>
+<button id="printtopdf">Print</button>
+<%end%>
     </div>
 </div>
 <script>
 
-    $('.add_exam input[type="submit"]').on('click',function (e) {
+    $('form').on('submit',function (e) {
         $('body').append('<%=escape_javascript(render 'loader')%>')
         
     })
-
+    $('a.resend').on('click',function (e) {
+        $('body').append('<%=escape_javascript(render 'loader')%>')
+        // setTimeout(() => {
+        //     $('#loader-cover').remove()
+        // }, 3000);
+    })
+$('#printtopdf').on('click',()=>{
+    var divContents = $("#automated_duties").html();
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write(`<html><head><title></title><style> table {
+  border: 1px solid black;
+  text-align: center;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  width:100%;
+}
+body{
+    display:flex;
+    flex-flow:column;
+    align-items:center;
+}
+#printtopdf{
+    display:none;
+}
+/* line 31, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/admin.scss */
+ table thead tr,  table tbody tr {
+  border: 1px solid grey;
+}
+/* line 33, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/admin.scss */
+ table thead tr td,  table thead tr th,  table tbody tr td,  table tbody tr th {
+  box-sizing: border-box;
+  padding: 10px;
+}
+/* line 37, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/admin.scss */
+ table thead tr td:nth-of-type(even),  table tbody tr td:nth-of-type(even) {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+/* line 42, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/admin.scss */
+ table thead tr:nth-of-type(even),  table tbody tr:nth-of-type(even) {
+  background-color: #f0f0f0;
+}</style>`);
+            printWindow.document.write('</head><body ><h1>Invigilator Duties</h1>');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+})
 </script>

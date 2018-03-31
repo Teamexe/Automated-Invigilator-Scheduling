@@ -15,3 +15,21 @@
 //= require_tree .
 //= require jquery
 //= require noty.min
+$(document).on('ajax:error', 'form', function(evt, xhr, status, error) {
+    $('#loader-cover .lds-ring').remove();
+    $('#loader-cover').html("<div style='color:white'><h1 >An error Occured</h1>Connect To Internet And Reload<br>If Not Resolving Contact Amit</div>")
+
+});
+console.log("ERROR");
+
+$(document).on('ajax:error', '.resend', function(evt, xhr, status, error) {
+    $('#loader-cover .lds-ring').remove();
+    $('#loader-cover').html("<div style='color:white;text-align:center;'><h1 >An error Occured</h1>Connect To Internet And Reload<br>If Not Resolving Contact Amit</div>")
+
+});
+// $('form').each(function () {
+//     $(this).on('ajax:error', function (event, xhr, data, status) {
+//         alert("Please find out error duplicate values!");
+
+//     });
+// });

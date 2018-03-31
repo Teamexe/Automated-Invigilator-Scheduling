@@ -47,6 +47,12 @@ div.content{
         }
 
     }   
+    @media(max-width:1145px) {
+        div.tables{
+            flex-flow: column;
+            align-items: center;
+        }
+    }
    .button_to input{
        margin-top: 20px;
         /*background-color: rgb(43, 117, 255);*/
@@ -67,5 +73,34 @@ div.content{
         transform: scale(1.1);
     }
 
-    
+    div#automated_duties{
+        margin-top: 10px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+        table{
+            border: 1px solid black;
+            text-align: center;
+            box-sizing: border-box;
+
+   border-collapse: collapse;
+            thead,tbody{
+                tr{
+                    border: 1px solid grey;
+                    td,th{
+                    box-sizing: border-box;
+                    padding: 10px;
+                    }
+                    td:nth-of-type(even){
+                        border-left: 1px solid black;
+                        border-right: 1px solid black;
+                    }       
+                }
+                tr:nth-of-type(even){
+                    background-color: rgb(240, 240, 240);
+                }
+            }
+    }
+}
 }

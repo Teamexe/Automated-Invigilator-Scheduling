@@ -1,0 +1,26 @@
+<table class="table">
+            <thead>
+                <tr>
+                    <th>Teacher</th>
+                    <th>Exam</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Class</th>
+                    <th>Room</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%@duties.each do|duty| %>
+                <tr>
+                    <td><%=duty.teacher.name%></td>
+                    <td><%=duty.exam.course%></td>
+                    <td><%=duty.exam.date%></td>
+                    <td><%=duty.exam.time.to_formatted_s(:time)%></td>
+                    <td><%=duty.exam.cls%></td>
+                    <td><%=duty.exam.room%></td>
+                </tr>
+                <%end %>
+            </tbody>
+            
+        </table>
+<button id="printtopdf">Print</button>

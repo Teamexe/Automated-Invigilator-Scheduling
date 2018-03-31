@@ -3,9 +3,11 @@ class AdminController < ApplicationController
   def index
     @exams=Exam.all
     @teachers=Teacher.all
+    @duties=ExamDuty.all
   end
   def automate
     automate_duties
+    @duties=ExamDuty.all
     respond_to do |format|
         format.js{}
     end
@@ -48,7 +50,26 @@ class AdminController < ApplicationController
     end
   end
   def automate_duties
-    
+    ExamDuty.delete_all
+    teachers_per_exam=2
+    # allTeachers=Teacher.where(roles:0).order("RAND()")
+    # ids = Teacher.pluck(:id).shuffle
+    allTeachers=Teacher.where(roles:0).shuffle
+    # allTeachers.each do |teacher|
+    #   puts teacher.name
+    # end
+    teachersCount=allTeachers.count
+    allExams=Exam.all
+    k=-1
+    (0...((allExams.count)*teachers_per_exam)).each do |i|
+      if(i%teachers_per_exam==0)
+        k=k+1
+      end
+      exam=ExamDuty.new(teacher_id:allTeachers[i%teachersCount].id,exam_id:allExams[k].id);
+      exam.save!
+      
+    end
+  
   end
   def exam_params
       if params['exam']

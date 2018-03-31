@@ -1,2 +1,48 @@
 var automate = document.getElementById('automated_duties');
-automate.append('<%= escape_javascript(render 'teachers_duties') %>')
+$('#automated_duties table').remove()
+$('#automated_duties button#printtopdf').remove()
+
+$('#loader-cover').remove()
+$("#automated_duties").append('<%= escape_javascript(render 'automated_duties_table',duties:@duties) %>')
+$('#printtopdf').on('click',()=>{
+    var divContents = $("#automated_duties").html();
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write(`<html><head><title></title><style> table {
+  border: 1px solid black;
+  text-align: center;
+  box-sizing: border-box;
+  border-collapse: collapse;
+  width:100%;
+}
+body{
+    display:flex;
+    flex-flow:column;
+    align-items:center;
+}
+#printtopdf{
+    display:none;
+}
+/* line 31, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/admin.scss */
+ table thead tr,  table tbody tr {
+  border: 1px solid grey;
+}
+/* line 33, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/admin.scss */
+ table thead tr td,  table thead tr th,  table tbody tr td,  table tbody tr th {
+  box-sizing: border-box;
+  padding: 10px;
+}
+/* line 37, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/admin.scss */
+ table thead tr td:nth-of-type(even),  table tbody tr td:nth-of-type(even) {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+/* line 42, /media/amit/disk H/amit/alchemy/teachersduty/app/assets/stylesheets/admin.scss */
+ table thead tr:nth-of-type(even),  table tbody tr:nth-of-type(even) {
+  background-color: #f0f0f0;
+}</style>`);
+            printWindow.document.write('</head><body ><h1>Invigilator Duties</h1>');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+})
