@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   post 'admin/automate'
   post 'admin/add_exam'
   post 'admin/add_teacher'
-  devise_for 'teachers', :controllers => {:registrations => "registrations"}
+  post 'admin/delete_exam'
+  post 'admin/delete_teacher'
+  devise_for 'teachers', controllers: {sessions: "sessions"}
   root 'main#index'
   get 'main/index'
   get 'teachers/index'

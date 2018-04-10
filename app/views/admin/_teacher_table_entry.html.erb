@@ -2,5 +2,8 @@
     <td><%=teacher.email %></td>
     <td><%=teacher.name %></td>
     <td><%=teacher.department %></td>
-    <td><%=link_to('resend', teacher_confirmation_path(teacher: {:email => "#{teacher.email}"}), :method => :post,remote: true)%></td>
+     <td><%if ! teacher.confirmed?%><%=link_to('resend', teacher_confirmation_path(teacher: {:email => "#{teacher.email}"}), :method => :post,class: "resend",remote: true)%><%else%>Confirmed<%end%></td>
+<td><%=link_to admin_delete_teacher_path(id:teacher.id),method: :post,class: "Delete" do%>
+        <%=image_tag 'cross.png',width:'20'%>        
+    <%end%></td>
 </tr>

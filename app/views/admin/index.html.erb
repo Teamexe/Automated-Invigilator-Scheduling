@@ -13,13 +13,7 @@
             </thead>
             <tbody>
             <%@teachers.each do |teacher| %>
-                <tr>
-                    <td><%=teacher.email %></td>
-                    <td><%=teacher.name %><%if teacher.admin? %>[ADMIN]<%end %></td>
-                    <td><%=teacher.department %></td>
-                    <td><%if ! teacher.confirmed?%><%=link_to('resend', teacher_confirmation_path(teacher: {:email => "#{teacher.email}"}), :method => :post,class: "resend",remote: true)%><%else%>Confirmed<%end%></td>
-                  
-                </tr>
+              <%=render 'teacher_table_entry',teacher: teacher%>
             <%end%>
             </tbody>
         </table>
@@ -47,14 +41,7 @@
             </thead>
             <tbody>
             <%@exams.each do|exam| %>
-                <tr>
-                    <td><%=exam.course_id%></td>
-                    <td><%=exam.course%></td>
-                    <td><%=exam.date%></td>
-                    <td><%=exam.time.to_formatted_s(:time)%></td>
-                    <td><%=exam.cls%></td>
-                    <td><%=exam.room%></td>
-                </tr>
+                <%=render 'exam_table_entry',exam: exam %>
                 <%end %>
             </tbody>
         </table>

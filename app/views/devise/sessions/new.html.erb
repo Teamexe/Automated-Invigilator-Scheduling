@@ -1,14 +1,20 @@
-<h2>Log in</h2>
-
+<%if params[:error] %>
+<div class="signin error">
+<%else%>
+<div class="signin">
+<%end %>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<h2>Sign in</h2>
+ 
+
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%# <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "Email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%# <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off",placeholder: "Password" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -19,8 +25,9 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "SignIn" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%# <%= render "devise/shared/links" %> 
+</div>

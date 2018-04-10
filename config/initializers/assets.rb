@@ -13,6 +13,7 @@ Rails.application.config.assets.precompile += %w( teachers.css )
 Rails.application.config.assets.precompile += %w( teachers.js )
 Rails.application.config.assets.precompile += %w( admin.css )
 Rails.application.config.assets.precompile += %w( admin.js )
+Rails.application.config.assets.precompile += %w( sessions.css )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.

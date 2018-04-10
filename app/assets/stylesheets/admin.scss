@@ -29,6 +29,7 @@ div.content{
    border-collapse: collapse;
             thead,tbody{
                 tr{
+                    // position: relative;
                     border: 1px solid grey;
                     td,th{
                     box-sizing: border-box;
@@ -41,6 +42,11 @@ div.content{
                 }
                 tr:nth-of-type(even){
                     background-color: rgb(240, 240, 240);
+                }
+            }
+            tbody{
+                a.Delete{
+                    text-decoration: none;
                 }
             }
                  
@@ -103,4 +109,18 @@ div.content{
             }
     }
 }
+}
+button#printtopdf{
+    border: 3px solid rgb(240, 148, 0);
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    color: rgb(240, 148, 0);
+    margin: 20px;
+    background-color: white;
+
+}
+button#printtopdf:hover{
+    background-color:rgb(240, 148, 0);
+    color: white;
 }

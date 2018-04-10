@@ -12,6 +12,22 @@ class AdminController < ApplicationController
         format.js{}
     end
   end
+  def delete_teacher
+    teacher=Teacher.find_by_id(params[:id])
+    if(teacher.destroy)
+      redirect_to admin_index_path,notice:"Deleted Successfully"
+    else
+      redirect_to admin_index_path,notice:"Deletion Failed"
+    end
+  end
+  def delete_exam
+    exam=Exam.find_by_id(params[:id])
+    if(exam.destroy)
+      redirect_to admin_index_path,notice:"Deleted Successfully"
+    else
+      redirect_to admin_index_path,notice:"Deletion Failed"
+    end
+  end
   def add_exam
     
      @exam = Exam.new(exam_params)

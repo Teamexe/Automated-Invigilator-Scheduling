@@ -5,4 +5,7 @@
     <td><%=exam.time.to_formatted_s(:time)%></td>
     <td><%=exam.cls%></td>
     <td><%=exam.room%></td>
+    <td><%=link_to admin_delete_exam_path(id:exam.id),method: :post,class: "Delete" do%>
+        <%=image_tag 'cross.png',width:'20'%>        
+    <%end%></td>
 </tr>
